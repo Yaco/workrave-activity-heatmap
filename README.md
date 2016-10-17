@@ -1,9 +1,10 @@
 # Workrave Activity Heatmap
 
-Creates a calendar heatmap visualization of Workrave's stats showing the level of activity per 
-day.
+Creates a calendar heatmap visualization of Workrave's stats showing the level of activity per day.
 
 The output calendar is similar to Github's one.
+
+![example of result](examples/sample.png)
 
 
 ## How to use
