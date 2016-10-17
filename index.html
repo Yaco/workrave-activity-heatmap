@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Workrave Calendar Heatmap</title>
+    <link rel="stylesheet" type="text/css" href="assets/calendar-heatmap/calendar-heatmap.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/moment.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="assets/calendar-heatmap/calendar-heatmap.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="assets/jquery-csv/jquery.csv.js"></script>
+		<script>
+			$(document).ready(function() {
+
+			});
+		</script>
+	    
+    <script type="text/javascript">
+							var element = {}, chartData = [];
+    $.ajax({
+					url: "sample.csv",
+					async: true,
+					success: function (csvd) {
+							data = $.csv.toObjects(csvd);
+					},
+					dataType: "text",
+					complete: function () {
+
+					for(var row in data) {
+								var date = new Date(data[row]['date']);
+								var count = data[row]['count'];
+								
+								//chartData.push(element);
+								chartData.push({ date: date, count: count });
+								
+							}
+
+							 console.log(chartData);
+
+								var heatmap = calendarHeatmap()
+                      .data(chartData)
+//                      .dateRange(d3.time.days(new Date(2015, 0, 1), new Date(2017, 0, 1)))
+                      .selector('.container')
+                      .colorRange(['#D8E6E7', '#218380'])
+                      .tooltipEnabled(true)
+//                       .colorRange(['#fff', '#000'])
+                      .onClick(function (data) {
+                      //  console.log('data', data);
+                      });
+									heatmap();  // render the chart
+
+					}
+				});
+
+				
+
+       
+//         return {
+//           date: dateElement,
+//           count: (dateElement.getDay() !== 0 && dateElement.getDay() !== 6) ? Math.floor(Math.random() * 60) : Math.floor(Math.random() * 10)
+//         };
+//       });
+
+
+
+    </script>
+  </head>
+  <body>
+    <div class="container"></div>    
+  </body>
+</html>
